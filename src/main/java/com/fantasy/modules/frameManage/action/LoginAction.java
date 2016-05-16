@@ -1,5 +1,6 @@
 package com.fantasy.modules.frameManage.action;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,64 +9,66 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fantasy.modules.userManage.model.User;
+import com.fantasy.util.Tools;
 
 
 @Controller
-//@Scope("prototype")
+@Scope("prototype")
 @RequestMapping("/login")
 public class LoginAction {
 	
-	@RequestMapping(value = "/check")
-	public ModelAndView check() {
-
-		ModelAndView mov=new ModelAndView();  
-        mov.setViewName("login");
+	@RequestMapping(value = "/loginCheck")
+	public ModelAndView loginCheck(HttpServletRequest request,HttpServletResponse response) {
+		System.out.println(request.getParameterMap());
+        String str = request.getParameter("username");
+        System.out.println(str);
+        
+        ModelAndView mov=new ModelAndView();  
+        if(str.equals("1")){
+        	mov.setViewName("login");
+        }else{
+        	mov.setViewName("modules/main");
+        }
         
 		return mov;
 	}
 	
 	@RequestMapping(value = "/query")
-	public String query(HttpServletRequest request,HttpServletResponse response) {
-//		System.out.println("chaxun");
-//		Map<String, String[]> paramMap = request.getParameterMap();
-//		System.out.println(paramMap.get("orderJson"));
-//		
-//		
-//        String str = request.getParameter("orderJson");
-//        System.out.println(str);
-//        JSONObject jb=new JSONObject();   
-//        String o=(String)jb.fromObject(str).get("username");  
-//        System.out.println(o);
+	@ResponseBody
+	public Map<String, Object> query(HttpServletRequest request,HttpServletResponse response) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-        //System.out.println(user.getUsername());
-		System.out.println("查询");
-		ModelAndView mov=new ModelAndView();  
-		mov.setViewName("32145");
-        
-        User user2=new User();
-        user2.setUsername("tom");
-        user2.setPassword("qwe");
-        mov.addObject(user2);
-        
-        
-        List<User> list = new ArrayList<User>();
-        User um = new User();
-        um.setUsername("sss");
-        um.setPassword("123");
-        list.add(um);
-        Map<String, Object> modelMap = new HashMap<String, Object>(3);
-        modelMap.put("total", "1");
-        modelMap.put("data", list);
-        modelMap.put("success", "true");
-		return null;
+        String str = request.getParameter("username");
+		
+		List<User> list = new ArrayList<User>();  
+	    User um = new User();  
+	    um.setUsername("测试1");
+	    um.setPassword("密码1");
+	    list.add(um); 
+	    
+	    if(str.equals("123")){
+	    	map.put("data", list);
+	        map.put("flag", "1");
+	        
+	    }else{
+	    	Map<String, Object> error=new HashMap<String,Object>();
+		    error.put("error", "用户名或密码错误");
+		    
+		    map.put("data", error);
+	        map.put("flag", "0");
+	    }
+	    
+		return map;
 	}
 }
