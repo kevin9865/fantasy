@@ -38,7 +38,7 @@
 				type : "post",
 				//dataType : 'json',
 				//contentType : 'application/json',
-				url : "${pageContext.request.contextPath}/login/query",
+				url : "${pageContext.request.contextPath}/loginAction/login",
 				data : userForm,
 				success : function(data, textStatus, jqXHR) {
 					//alert("成功"+data+","+textStatus+","+jqXHR.responseText);
@@ -46,10 +46,10 @@
 					//	alert("i=" + i + ",username=" + item.username+",password"+item.password);
 					//});
 					if(data.flag=="0"){
-						$('#unLab').html(data.data.error);
+						$('#errorLab').html(data.data.error);
 					}else{
 						$('form').attr({
-							action:"${pageContext.request.contextPath}/main/initMenu",
+							action:"${pageContext.request.contextPath}/mainAction/initMenu",
 							method:"post"
 						});
 						
@@ -69,7 +69,7 @@
 	<form id="loginForm">
 		用户名:<input type="text" name="username" id="username"></input><br/>
 		密码:<input type="text" name="password" id="password"></input><br/>
-		<label id="unLab"></label><br/>
+		<label id="errorLab"></label><br/>
 		<input type="button" value="ajax提交" id="subAjax">
 		<input type="button" value="form提交" id="subForm">
 	</form>
