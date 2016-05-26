@@ -150,6 +150,18 @@
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>4.3.7.Final</version>
 		</dependency>
+		<!-- dbcp -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.30</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>fantasy</finalName>
