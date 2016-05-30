@@ -4,18 +4,17 @@ public class WidgetGroup {
 	
 	
 	
-	public static void group(Widget w){
-		//System.out.println(w.getHtml());
+	public static Widget group(Widget w){
 		if(!w.getComponent().isEmpty()){
 			for(Widget wi:w.getComponent()){
-				System.out.println(wi.getHtml());
-				if(!wi.getComponent().isEmpty()){
-					group(wi);
+				if(wi.getComponent().isEmpty()){
+					w.addParamete(wi);
+				}else{
+					Widget wt=group(wi);
+					w.addParamete(wt);
 				}
-				
-				w.addParamete(wi);
 			}
-			
 		}
+		return w;
 	}
 }

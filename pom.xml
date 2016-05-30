@@ -8,7 +8,7 @@
 	<name>fantasy Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
+		<org.springframework.version>4.2.6.RELEASE</org.springframework.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -131,6 +131,16 @@
 		</dependency>
 		<!-- hibernate -->
 		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>5.1.0.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-entitymanager</artifactId>
+		    <version>5.1.0.Final</version>
+		</dependency>
+<!-- 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>4.3.7.Final</version>
@@ -149,7 +159,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
 			<version>4.3.7.Final</version>
-		</dependency>
+		</dependency> -->
 		<!-- dbcp -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>

@@ -26,6 +26,8 @@
 		});
 
 		//$('#save').submit("",function(){});
+		
+		//登录系统
 		$('#subAjax').click(function() {
 			//var username = $("#username").val();
 			//var password = $("#password").val();

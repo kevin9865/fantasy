@@ -14,8 +14,8 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$.ajax({
+ 	$(function() {
+		/* $.ajax({
 			type : "post",
 			//dataType : 'json',
 			//contentType : 'application/json',
@@ -24,12 +24,19 @@
 
 				var menu = data.menu;
 				$("#menuUL").append(menu);
+				
+				alert("success");
 			},
 			error : function(data) {
 				alert("error:" + data);
 			}
-		});
+		}); */
 		
+		//初始化菜单栏
+		var menu='${menu}';
+		$("#menuUL").append(menu);
+		
+		//退出登录
 		$("#out").click(function(){
 			$('#outForm').attr({
 				action:"${pageContext.request.contextPath}/mainAction/logout",
@@ -66,6 +73,7 @@
 					</ul>
 				</li>
 				 -->
+				 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">${username}</a></li>

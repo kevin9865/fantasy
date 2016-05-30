@@ -18,25 +18,21 @@ public class SysFunctionService implements ISysFunctionService{
 	@Qualifier("sysFunctionDao")
 	private ISysFunctionDao iSysFunctionDao;
 	
-	@Override
 	public void add(SysFunction sysFunction) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void delete(SysFunction sysFunction) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void deleteBatch(List<SysFunction> list) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void update(SysFunction sysFunction) {
 		// TODO Auto-generated method stub
 		
@@ -47,13 +43,11 @@ public class SysFunctionService implements ISysFunctionService{
 		return iSysFunctionDao.sysFunctionQueryAll();
 	}
 
-	@Override
 	public List<SysFunction> sysFunctionQuery(List<String> list) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public int maxId() {
 		// TODO Auto-generated method stub
 		return 0;

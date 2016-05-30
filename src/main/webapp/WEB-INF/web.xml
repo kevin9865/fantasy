@@ -10,14 +10,6 @@
 		<!-- <param-value>/WEB-INF/applicationContext-*.xml,classpath*:applicationContext-*.xml</param-value> -->
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-		<!-- default: /WEB-INF/applicationContext.xml -->
-	</listener>
-<!--	<listener>
-		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-	</listener>-->
-	
 	<!-- spring mvc -->
 	<servlet>
         <servlet-name>springMVC</servlet-name>
@@ -34,6 +26,16 @@
         <servlet-name>springMVC</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<!-- default: /WEB-INF/applicationContext.xml -->
+	</listener>
+<!--	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>-->
+	
+	
     
     <!-- 字符编码配置 -->  
 	<filter>  

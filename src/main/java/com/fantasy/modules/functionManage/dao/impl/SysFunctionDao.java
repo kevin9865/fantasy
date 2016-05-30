@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fantasy.modules.functionManage.dao.ISysFunctionDao;
 import com.fantasy.modules.functionManage.model.SysFunction;
@@ -25,47 +26,41 @@ public class SysFunctionDao implements ISysFunctionDao{
 		this.sessionFactory = sessionFactory;
 	}
 	
-	@Override
 	public void add(SysFunction sysFunction) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void delete(SysFunction sysFunction) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void update(SysFunction sysFunction) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public SysFunction sysFunctionQuery(SysFunction sysFunction) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	public List<SysFunction> sysFunctionQueryAll() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		//String companyCode=LoginAction.getCurrentUser().getCompanyCode();
 		String companyCode="fantasy";
 		List<SysFunction> list = session.createQuery(
 				"from SYS_FUNCTION sf where sf.companyCode='"+companyCode+"' order by sf.sysFunId").list();
-
+		//session.close();
 		return list;
 	}
 
-	@Override
 	public List<SysFunction> sysFunctionQuery(List<String> list) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public int maxId() {
 		// TODO Auto-generated method stub
 		return 0;

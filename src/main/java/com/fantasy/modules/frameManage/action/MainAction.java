@@ -22,6 +22,7 @@ import com.fantasy.modules.functionManage.model.SysFunction;
 import com.fantasy.modules.functionManage.service.ISysFunctionService;
 import com.fantasy.modules.userManage.model.User;
 import com.fantasy.util.widget.Widget;
+import com.fantasy.util.widget.WidgetGroup;
 
 @Controller
 @Scope("prototype")
@@ -35,13 +36,11 @@ public class MainAction {
 	@RequestMapping(value = "/initMenu")
 	@ResponseBody
 	public Map<String, Object> initMenu(HttpServletRequest request,HttpServletResponse response,HttpSession session){
-		System.out.println("初始化菜单");
 		
 		//User user=(User) LoginAction.getCurrentUser(session);
 		//System.out.println("获取用户:"+user.getUsername());
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-
 //		String menu=
 //		"<li class='active'><a href='#'>Home</a></li>" +
 //		"<li class='dropdown'>" +
@@ -59,84 +58,6 @@ public class MainAction {
 //		"</li>";
 //		
 //		map.put("menu", menu);
-		
-		
-		Widget wUl2=null;
-		Widget wUl3=null;
-		Widget wLi1=null;
-		Widget wLi2=null;
-		Widget wLi3=null;
-		List<SysFunction> list=iSysFunctionService.sysFunctionQueryAll();
-		for(SysFunction sf:list){
-			if(sf.getLevelGrade()==1){
-				System.out.println("1:"+sf.getSysFunName());
-				wLi1=new Widget("li","class=\"dropdown\"","");
-				Widget wA=new Widget("a","href=\"#\"",sf.getSysFunName());
-				Widget wSpan=new Widget("span","class=\"caret\"","");
-				
-				wLi1=wLi1.addParamete(wA.addParamete(wSpan));
-				
-			}else if (sf.getLevelGrade()==2) {
-				System.out.println("2:"+sf.getSysFunName());
-				if(wUl2==null){
-					wUl2=new Widget("ul","class=\"bs-menu dropdown-menu\"","");
-				}
-				
-				wLi2=new Widget("li","class=\"dropdown-submenu\"","");
-				Widget wA=new Widget("a","href=\"#\"",sf.getSysFunName());
-				
-				wLi1=wLi1.addParamete(wUl2.addParamete(wLi2.addParamete(wA)));
-				
-			}else if (sf.getLevelGrade()==3) {
-				System.out.println("3:"+sf.getSysFunName());
-				if(wUl3==null){
-					wUl3=new Widget("ul","class=\"bs-menu dropdown-menu\"","");
-
-				}
-				wLi3=new Widget("li","class=\"dropdown-submenu\"","");
-				Widget wA=new Widget("a","href=\"#\"",sf.getSysFunName());
-				
-				wLi2.addParamete(wUl3.addParamete(wLi3.addParamete(wA)));
-				
-			}
-			System.out.println(wLi1.getComponent());
-		}
-		
-		
-		System.err.println("功能数量："+list.size());
-		
-//		Widget wLi1=new Widget("li","class=\"active\"","");
-//		Widget wLi1_A1=new Widget("a","href=\"#\"","HOME");
-//		
-//		Widget wLi2=new Widget("li","class=\"dropdown\"","");
-//		Widget wLi2_A1=new Widget("a","class=\"dropdown-toggle\" href=\"#\"","系统功能");
-//		Widget wLi2_A1_Span1=new Widget("span","class=\"caret\"","");
-//		
-//		Widget wLi2_Ul1=new Widget("ul","class=\"bs-menu dropdown-menu\"","");
-//		Widget wLi2_Ul1_Li1=new Widget("li","class=\"dropdown-submenu\"","");
-//		Widget wLi2_Ul1_Li1_A1=new Widget("a","href=\"#\"","用户管理");
-//		Widget wLi2_Ul1_Li1_Ul1=new Widget("ul","class=\"bs-submenu dropdown-menu\"","");
-//		Widget wLi2_Ul1_Li1_Ul1_Li1=new Widget("li","","");
-//		Widget wLi2_Ul1_Li1_Ul1_Li1_A1=new Widget("a","href=\"#\"","用户查询");
-//		Widget wLi2_Ul1_Li1_Ul1_Li2=new Widget("li","","");
-//		Widget wLi2_Ul1_Li1_Ul1_Li2_A1=new Widget("a","href=\"#\"","用户添加");
-//		Widget wLi2_Ul1_Li2=new Widget("li","","");
-//		Widget wLi2_Ul1_Li2_A1=new Widget("a","href=\"#\"","角色管理");
-//		Widget wLi2_Ul1_Li3=new Widget("li","","");
-//		Widget wLi2_Ul1_Li3_A1=new Widget("a","href=\"#\"","功能管理");
-//
-//		String liComp1=wLi1.addParamete(wLi1_A1).getComponent();
-//		String liComp2=wLi2.addParamete(wLi2_A1.addParamete(wLi2_A1_Span1))
-//						   .addParamete(wLi2_Ul1.addParamete(wLi2_Ul1_Li1.addParamete(wLi2_Ul1_Li1_A1)
-//														                 .addParamete(wLi2_Ul1_Li1_Ul1.addParamete(wLi2_Ul1_Li1_Ul1_Li1.addParamete(wLi2_Ul1_Li1_Ul1_Li1_A1))
-//														  							                  .addParamete(wLi2_Ul1_Li1_Ul1_Li2.addParamete(wLi2_Ul1_Li1_Ul1_Li2_A1))))
-//								                .addParamete(wLi2_Ul1_Li2.addParamete(wLi2_Ul1_Li2_A1))
-//								                .addParamete(wLi2_Ul1_Li3.addParamete(wLi2_Ul1_Li3_A1))).getComponent();
-//		
-		//System.out.println(liComp1+liComp2);
-		System.out.println("all---"+wLi1.getComponent());
-		map.put("menu", wLi1.getComponent());
-		
 		return map;
 	}
 	

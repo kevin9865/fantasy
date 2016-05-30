@@ -5,15 +5,19 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc" 
 	xsi:schemaLocation="
 	http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context 
-	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/aop 
-	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+	http://www.springframework.org/schema/aop/spring-aop.xsd 
 	http://www.springframework.org/schema/tx 
-	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/tx/spring-tx.xsd
 	http://www.springframework.org/schema/mvc  
-    http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	
+	
+	
 	
     <bean
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -29,14 +33,12 @@
     </bean>
     
     <bean id="sessionFactory"
-        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan">
             <list>
                 <value>com.fantasy.modules.userManage.model</value>
                 <value>com.fantasy.modules.functionManage.model</value>
-                <value>com.fantasy.modules.orgManage.model</value>
-                <value>com.fantasy.modules.roleManage.model</value>
                 <value>com.fantasy.modules.approveManage.model</value>
             </list>
         </property>
@@ -48,13 +50,13 @@
                 <prop key="hibernate.jdbc.batch_size">50</prop>
                 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
                 <prop key="hibernate.generate_statistics">false</prop>
-                <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
+                <!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
             </props>
         </property>
     </bean>
     
     <bean id="txManager"
-        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     <tx:annotation-driven transaction-manager="txManager"/>
