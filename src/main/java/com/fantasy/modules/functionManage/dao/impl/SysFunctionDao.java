@@ -6,8 +6,8 @@ import javax.annotation.Resource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.fantasy.modules.functionManage.dao.ISysFunctionDao;
 import com.fantasy.modules.functionManage.model.SysFunction;
